@@ -4,7 +4,7 @@ const itemContainer = document.querySelector(".list");
 data.forEach(el=> {
     const element = `
         <div class="item">
-            <img class="item__img" src=${el.img}/>
+            <img class="item__img" src=${el.img}>
             <div class="item__text">${el.text}</div>
         </div>
     `
