@@ -19,7 +19,7 @@ const {startAutoScroll, restartScrollTimeout} = createAutoScroll(items);
 
 items.forEach(item => {
     item.addEventListener("click", (event)=>{
-        const result = handleItemClick(event, items, itemHeight);
+        const result = handleItemClick({event, items, itemHeight});
         if(result){
             secondItem = result.secondItem;
             lastItem = result.lastItem;

@@ -1,4 +1,4 @@
-const handleItemClick = (event, items, itemHeight)=>{
+const handleItemClick = ({event, items, itemHeight})=>{
     let secondItem;
     let lastItem;
     const currentItem = event.currentTarget;
