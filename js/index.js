@@ -5,7 +5,7 @@ import handleItemClick from "./handleItemClick.js";
 import handleTouchStart from "./handleTouchStart.js";
 import handleTouchMove from "./handleTouchMove.js";
 
-const itemsContainer = document.querySelector(".itemList"); //контейнер для пунктов меню
+const itemsContainer = document.querySelector(".nav-wrapper"); //контейнер для пунктов меню
 const itemHeight = parseInt(getComputedStyle(itemsContainer).getPropertyValue('--slider-item-height')); //высота пункта меню
 
 let secondItem = null; //текущий второй(сверху) элемент в навигационном меню
@@ -27,8 +27,6 @@ items.forEach(item => {
     },false)
 })
 
-items[1].dispatchEvent(new Event("click")); //Вызываем клик, чтоб не писать начальные позиции и не присваивать secondItem и lastItem
-
 itemsContainer.addEventListener('touchstart', (event)=>{
     restartScrollTimeout();
     const result = handleTouchStart(event);
@@ -46,6 +44,7 @@ itemsContainer.addEventListener('touchmove', (event)=>{
     }
 }, false);
 
+items[1].dispatchEvent(new Event("click")); //Вызываем клик, чтоб не писать начальные позиции и не присваивать secondItem и lastItem
 startAutoScroll(5000, 5000); //Запускаем автоскролл
 
 

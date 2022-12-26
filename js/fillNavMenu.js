@@ -7,11 +7,11 @@ const fillNavMenu = (data, container) => {
     //index - необходим для перемещения элементов, на его основе рассчитывается анимация
     data.forEach((el, index)=> {
         const element = `
-            <div class="item" data-index="${index}">
+            <div class="nav-item" data-index="${index}">
             
-                ${el.img && `<img class="item__img" src="${el.img}" alt="${el.text || "картинка"}">`}
+                ${el.img && `<img class="nav-item__img" src="${el.img}" alt="${el.text || "картинка"}">`}
                 
-                ${el.text && `<div class="item__text">${el.text}</div>`}
+                ${el.text && `<div class="nav-item__text">${el.text}</div>`}
                 
             </div>
         `

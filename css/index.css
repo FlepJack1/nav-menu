@@ -8,47 +8,47 @@ body {
     font-family: sans-serif;
     font-size: 16px;
     background-color: darkgray;
+    width: 100vw;
+    height: 100vh;
 }
 
-.slider {
-    width: 100%;
-    height: 100%;
-    --slider-width: 240; /*px*/
-    --slider-height: 720; /*px*/
-    --slider-item-height: 120; /*px*/
+.nav-slider { /* variables only */
+    --slider-item-width: 250px;
+    --slider-item-height: 120px;
+    --slider-width: calc(var(--slider-item-width) * 1.5 ); /* умножается на 1.5 т.к. элементы будут сдвинуты лесенкой по оси x */
+    --slider-height: calc(var(--slider-item-height) * 6); /* 6 - константа количества слайдов */
 }
 
-.wrapper {
+.nav-slider {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: var(--slider-width)px ;
-    height: var(--slider-height)px;
+    height: var(--slider-height);
+    width: var(--slider-width);
 }
 
-.itemList {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.nav-wrapper {
     height: 100%;
     width: 100%;
     touch-action: pan-y;
 }
 
-.item {
+.nav-item {
     will-change: transform;
-    min-width: 100%;
-    min-height: var(--slider-item-height)px;
+    position: absolute;
+    width: var(--slider-item-width);
+    height: var(--slider-item-height);
     display: flex;
     align-items: center;
-    transition: transform .5s linear;
+    padding: 20px 0;
+    transition: transform .3s linear;
 }
-.item__img{
+.nav-item__img{
     width: 80px;
     height: 80px;
 }
-.item__text{
+.nav-item__text{
     margin-left: 30px;
     color: white;
 }

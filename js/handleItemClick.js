@@ -10,21 +10,25 @@ const handleItemClick = ({event, items, itemHeight})=>{
     items.forEach((item) => {
         let itemIndex = parseInt(item.dataset.index);
 
-        if(itemIndex === currentItemIndex){
-            item.dataset.index = "0";
-        }else if (itemIndex > currentItemIndex) {
-            item.dataset.index = (itemIndex-currentItemIndex).toString();
+        //Логика обновления index-ов, имитирующая передвижение по кругу
+        if (itemIndex > currentItemIndex) {
+            itemIndex = itemIndex-currentItemIndex;
         }else if (itemIndex < currentItemIndex) {
-            item.dataset.index = (itemIndex - currentItemIndex + itemsLength).toString();
+            itemIndex = itemIndex - currentItemIndex + itemsLength;
+        }else if(itemIndex === currentItemIndex) {
+            itemIndex = 0;
         }
 
-        if(parseInt(item.dataset.index) === 1 ) secondItem = item;
-        else if(parseInt(item.dataset.index) === itemsLength-1 ) lastItem = item;
+        //Установка новых последнего и предпоследнего элементов
+        if(itemIndex === 1 ) secondItem = item;
+        else if(itemIndex === itemsLength-1 ) lastItem = item;
 
+        //Обновление dom
+        item.dataset.index = itemIndex.toString();
         item.style.transform = `
-            translateY(${parseInt(item.dataset.index) * itemHeight - item.offsetTop}px)
-            translateX(${(itemsLength - 1 - parseInt(item.dataset.index)) * 20}px)
-            scale(${1 - parseInt(item.dataset.index)/10})
+            translateY(${itemIndex * itemHeight}px)
+            translateX(${(itemsLength - 1 - itemIndex) * 20}px)
+            scale(${1 - itemIndex/10})
         `
     })
     return {secondItem, lastItem};
